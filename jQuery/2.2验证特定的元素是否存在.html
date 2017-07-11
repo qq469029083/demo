@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<h2 id="h">jQuery-验证特定的元素是否存在</h2>
+		<button>获取标题文字标记</button>
+		<div></div>
+		<script type="text/javascript">
+			$("button").click(function(){
+				$("div").html(
+					"<p>标题文字标记为"+$("#h")[0].tagName+"</p>"
+				);
+				console.log($("#h"));
+				console.log($("#h")[0]);
+			});
+		</script>
+	</body>
+</html>

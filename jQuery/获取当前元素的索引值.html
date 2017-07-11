@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+
+	</head>
+
+	<body>
+		<p>如果参数是一组DOM元素或者jQuery对象，那么返回值就是传递的元素相对于原先集合的位置。</p>
+		<p>如果参数是一个选择器，那么返回值就是原先元素相对于选择器匹配元素中的位置。如果找不到匹配的元素，则返回-1。 具体请参考示例。</p>
+		<button>获取索引值(index)</button>
+		<ul>
+			<li>胡豆</li>
+			<li class="l">豆包</li>
+			<li class="l" id="i">黑豹</li>
+		</ul>
+		<script type="text/javascript">
+			$("button").click(function() {
+				//获取#i相对于.l的index索引值
+				alert("#i相对于.l的index索引值：" + $(".l").index($("#i")));
+			})
+		</script>
+	</body>
+
+</html>
