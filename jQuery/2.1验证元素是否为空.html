@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<input type="text" />
+		<button>验证</button>
+		<script type="text/javascript">
+			$(function() {
+				var t = $("input");
+				$("button").click(function() {
+					if(t.val() == "") {
+						alert("为空")
+						t.focus();
+					} else {
+						alert("不为空");
+					}
+				})
+			});
+		</script>
+	</body>
+
+</html>
