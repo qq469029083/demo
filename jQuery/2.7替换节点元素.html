@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<span>hello</span>
+		<br />
+		<span>world</span>
+		<br />
+		<button id="b1">replaceWith()</button>
+		
+		<br />
+		<ol type="">
+			<li class="1">盲僧</li>
+			<li class="2">小学生</li>
+			<li class="3">千年打野</li>
+		</ol>
+		<button id="b2">移动到目标位置来替换</button>
+		<br />
+		<br />
+		<br />
+		<br />
+		appendTo, prependTo, insertBefore, insertAfter, 和 replaceAll这个几个方法成为一个破坏性操作，返回值是所有被追加的内容，而不仅仅是先前所选中的元素。所以，要选择先前选中的元素，需要使用end()方法，
+		<header id="d1">
+			<div></div>
+			<div></div>
+		</header>
+		<strong id="s1"></strong>
+		<button id="b3">不带end()</button>
+		<button id="b4">带end()</button>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#b1").click(function(){
+					$("span").replaceWith("<b>Parag</b>");
+				})
+				$("#b2").click(function(){
+					$(".3").replaceWith($(".1"));
+				})
+				$("#b3").click(function(){
+					$("div").empty();
+					$("<p/>")
+					.appendTo("div")
+					.addClass("test1")
+					.addClass("test2");
+					$("#s1").text($("header").html());
+				});
+				$("#b4").click(function(){
+					$("div").empty();
+					$("<p/>")
+					.appendTo("div")
+					.addClass("test1")
+					.end() //appendTo, prependTo, insertBefore, insertAfter, 和 replaceAll这个几个方法成为一个破坏性操作，返回值是所有被追加的内容，而不仅仅是先前所选中的元素。所以，要选择先前选中的元素，需要使用end()方法，
+					.addClass("test2");
+					$("#s1").text($("header").html());
+				});
+			});
+		</script>		
+	</body>
+</html>
+

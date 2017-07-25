@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<button id="b1">clone()默认false不带功能</button>
+		<br />
+		<button id="b2">clone(true)克隆功能</button>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#b1").click(function(){
+					$(this).clone().insertAfter(this);
+				});
+				$("#b2").click(function(){
+					$(this).clone(true).insertAfter(this);
+				});
+			})
+			
+		</script>		
+	</body>
+</html>

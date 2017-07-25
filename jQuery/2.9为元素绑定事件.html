@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<p>jQuery 3.0中已弃用bind()方法，请用 on()代替</p>
+		<button id="b1">绑定</button>
+		<div id='log'>
+			<p>日子记录：</p>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#b1").bind('click',{d1:'jQuery:',d2:'将事件绑定到元素'},myFunc);
+			});
+			function myFunc(e){
+				$("#log").html($("#log").html()+"<p>"+e.data.d1+e.data.d2+"</p>");
+			}
+		</script>		
+	</body>
+</html>
+
