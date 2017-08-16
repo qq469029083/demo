@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<p>
+			<b>最大输入字符数</b>
+			<input type="text" id="max-text" style="width:32px" value="10" />
+		</p>
+		<p>
+			<input type="button" id="max-btn" value="限制文本域中字符的个数" />
+		</p>
+		<div>
+			<textarea name="max-textarea" id="textarea" cols="30" rows="10">
+			</textarea>
+		</div>
+		<div id="log">
+			<p>日志记录：</p> 
+		</div>
+		<script type="text/javascript">
+		$(function(){
+			jQuery.fn.maxLen=function(max){
+				return this.each(function(){
+					var type=this.tagName.toLowerCase(); //获取文本域的tagName(标签名字)
+					var inputType=this.type?this.type.toLowerCase():null;
+					//判断input、text和password文本域类型
+					if(type=="input"&&inputType=="text"||inputType=="password"){
+						this.maxLength=max;
+					}else if(type=="textarea"){
+						//onkeypress事件处理过程
+						this.onkeypress=function(e){
+							var ob=e||event;
+							var keyCode=ob.keyCode; //键盘输入编码
+							this.onkeyup=function(){
+								if(this.value.length>max){
+									this.value=this.value.substring(0,max); //截断多余字符
+								}
+							}
+						}
+					}
+				});
+			}
+			$("#max-btn").click(function(){
+				var max_=parseInt($("#max-text").val());
+				$("#textarea").maxLen(max_);
+				$("#log").html($("#log").html()+"<p>"+"最大输入字符个设定为"+max_+"个"+"</p>");
+			})
+		})
+			
+		</script>
+	</body>
+</html>

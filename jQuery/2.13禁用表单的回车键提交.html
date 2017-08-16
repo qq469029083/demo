@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<form action="xx.php" method="post">
+			Name：<input type="text" name="name" />
+			Age: <input type="text" name="age" />
+			<input type="submit" value="提交"/>
+		</form>
+		<script type="text/javascript">
+			$("input").keypress(function(e){
+				var keyCode=e.keyCode?e.keyCode:e.which?e.which:e.charCode;
+				if(keyCode==13){
+					//按回车跳到下个输入框
+					for(var i=0;i<this.form.elements.length;i++){
+						if(this==this.form.elements[i]){
+							break; //break是结束整个循环
+						}
+					}
+						i=(i+1)%this.form.elements.length;
+						this.form.elements[i].focus();
+						return false;
+				}else{
+						return true;
+				}
+			})
+		</script>
+	</body>
+</html>

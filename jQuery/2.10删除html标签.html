@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<input type="button" id="btn1" value="删除html标签" />
+		<div id="d1">
+				<table border="1" style="padding:2px;">
+					<tr>
+						<td>1</td>
+						<td>jQuery</td>
+						<td>超实用的jQ</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>jQuery</td>
+						<td>超实用的jQ</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>jQuery</td>
+						<td>超实用的jQ</td>
+					</tr>
+				</table>
+		</div>
+		<script type="text/javascript">
+			(function($) {
+				$.fn.cutOffTag = function() {
+					var regexp = /<("[^"]*"|'[^']*'|[^'">])*>/gi;  //标签的正则式  <tag></tag>
+					this.each(function() {
+						$(this).html($(this).html().replace(regexp,""));
+					});
+					return $(this);
+				}
+			})(jQuery);
+			$(function() {
+				$("#btn1").click(function() {
+					$("#d1").cutOffTag();
+				})
+			})
+		</script>
+	</body>
+
+</html>

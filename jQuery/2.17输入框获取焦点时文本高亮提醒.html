@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			.text-hign{
+				color:#000;
+			}
+			.text-low{
+				color:grey;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				for(var i=0;i<$("input").length;i++){
+					$("input")[i].onfocus=function(){
+						this.className="text-high";
+					}
+					$("input")[i].onblur=function(){
+						this.className="text-low";
+					}
+				}
+			});
+		</script>		
+		<form action="" method="post">
+			<p><label><input type="text"/></label></p>
+			<p><label><input type="text"/></label></p>
+		</form>
+	</body>
+</html>
+

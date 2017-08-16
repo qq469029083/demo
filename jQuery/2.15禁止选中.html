@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$(document).bind("selectstart",function(e){  //selectstart
+					$("#log").append("选中已被禁止"+current()+"<br>");
+					return  false;
+				})
+			})
+			function current(){
+				var d=new Date(),str="";
+				str+=d.getFullYear()+"年";
+				str+=d.getMonth()+"月";
+				str+=d.getDate()+"日";
+				str+=d.getHours()+"时";
+				str+=d.getMinutes()+"分";
+				str+=d.getSeconds()+"秒";
+				return str;
+			}
+		</script>
+		<p>想见你 非常的思念你</p>
+		<p>想见你 非常的思念你</p>
+		<p>想见你 非常的思念你</p>
+		<div id="log"></div>
+		</script>		
+	</body>
+</html>
+

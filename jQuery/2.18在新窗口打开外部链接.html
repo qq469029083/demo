@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).delegate("a","click",function(){
+				var root = location.href.replace(location.pathname+location.search+location.hash,""); //对超链接a的click事件进行委托
+				if(!this.href){
+					return;
+				}
+				if(this.href.indexOf(root)!=0){
+					window.open(this.href);
+				}
+			})
+		</script>
+	</head>
+	<body>
+		<p>
+			<a href="http://www.tmall.com">Tmall</a>
+		</p>
+	</body>
+</html>
