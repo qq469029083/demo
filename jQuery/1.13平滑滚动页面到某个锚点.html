@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			
+			
+			#mid,#end{
+				margin-top: 1000px;
+				width:100px;
+				height:100px;
+				background: gold;
+			}
+		</style>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				jQuery.scrollTo=function(dom,time){
+					$(dom).click(function(){
+						var dom_=$(this).attr("page-scroll");
+						$("html,body").animate({
+							scrollTop:$(dom_).offset().top
+						},time);
+						return false;
+					})
+				}
+				$.scrollTo("a",1000)
+			});
+		</script>	
+	</head>
+	<body>
+		<div id="top"></div>
+		<a href="#" page-scroll="#mid">滑动到页面中部</a>
+		<a href="#" page-scroll="#end">滑动到页面底部</a>
+		<div id="mid"></div>
+		<a href="#" page-scroll="#top">滑动到页面顶部</a>
+		<a href="#" page-scroll="#end">滑动到页面底部</a>
+		<div id="end"></div>
+		<a href="#" page-scroll="#top">滑动到页面顶部</a>
+		<a href="#" page-scroll="#mid">滑动到页面中部</a>
+	</body>
+</html>
+

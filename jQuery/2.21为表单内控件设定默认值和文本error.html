@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				var o = $("#input1"),
+					tip = "输入不能为空";
+				o.attr("valCache", o.val());
+				o.blur(function() {
+					if(o.val() == "") {
+						o.valCache = "";
+						o.val(tip);
+					} else {
+						o.valCache = o.val();
+					}
+				});
+				o.onfocus = function() {
+					alert("1")
+					o.value = o.valCache;
+					var e = event.srcElement; //获取事件目标
+					var r = e.createTextRange(); //创建文本对象，使文本具有对象的功能和属性
+					r.moveStart("character", e.value.length); //文本对象的方法
+					r.collapse(true);
+					r.select();
+				}
+				o.onblur()
+			})
+		</script>
+	</head>
+
+	<body>
+		<input type="text" id="input1" name="" value="1" />
+		<div>
+			moveStart 更改范围的开始位置 moveEnd 更改范围的结束位置 collapse 将插入点移动到当前范围的开始或结尾 move 折叠给定文本范围并将空范围移动给定单元数 execCommand 在当前文档、当前选中区或给定范围上执行命令 select 将当前选择区置为当前对象 findText 在文本中搜索文本并将范围的开始和结束点设置为包围搜索字符串。
+		</div>
+	</body>
+
+</html>

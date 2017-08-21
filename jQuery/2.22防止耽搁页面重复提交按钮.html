@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#submit").click(function(){
+					$("#submit").attr("disabled",true);
+					var dataString="name=text";
+					$.ajax({
+						type:"post",
+						url:"2-22.php",
+						async:true,
+						data:dataString,
+						success:function(){
+							$("#submit").removeAttr("disabled");
+						}
+					});
+					return false;
+				})
+			});
+		</script>	
+	</head>
+	<body>
+		<form action="">
+			<input type="text" />
+			<input type="submit" id="submit"/>
+		</form>
+	</body>
+</html>
+

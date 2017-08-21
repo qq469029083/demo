@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>有误</title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//模拟实现outText属性
+				$.fn.outText=function(){  
+					
+					return $("<div/>").append(this.clone()).html();      
+				}
+				//模拟实现outHTML属性
+				jQuery.fn.outHTML=function(s){
+			//		return (s)?this.before(s).remove():jQuery("&lt;p&gt;").append(this.eq(0).clone()).html();
+				}
+				$("#getOuterHTML").change(function(){
+					$("#log").html($("#log").html()+$("#id-out").outText());
+				});
+				$("#setOuterHTML").change(function(){
+					$("#id-out").outHTML('<select name="id-out" id="id-out"><option value="1" selected="selected">outHTML</option><option value="2"></option></select>');
+				})
+				console.log($("h2").outText()+"")
+			});
+		</script>	
+	</head>
+	<body>
+		<h2>撒打算</h2>
+	</body>
+</html>
+

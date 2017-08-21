@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#d1{
+				width:200px;
+				height:200px;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				background: sandybrown;
+				position:absolute;
+			}
+			#d2{
+				width:200px;
+				height:200px;
+				text-align: center;
+				line-height: 200px;
+				font-size: 40px;
+				background:	gold;
+				position:absolute;
+				top:300px;
+			}
+		</style>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#b1").click(function(){
+					$("#d1").animate({left:'400px'}).animate({top:'400px'});//顺序执行
+					$("#d2").animate({left:'300px'});//同时
+				})
+			});
+			
+		</script>	
+	</head>
+	<body>
+		<button id="b1">开始动画</button>
+		<div id='d1'>Rihanna</div>
+		<div id='d2'>Sky</div>
+	</body>
+</html>
+

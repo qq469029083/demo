@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<pre>
+		javascript中的moveStart和moveEnd方法，createTextRange()方法和createRange()方法 (2012-08-24 14:00:38)转载▼ 标签： movestart moveend createrange it 分类： Javascript/JQuery javascript中的moveStart和moveEnd方法，createTextRange()方法和createRange()方法 详探TextRange对象--查找与选择 TextRange 对象是动态HTML(DHTML)的高级特性，使用它可以实现很多和文本有关的任务，例如搜索和选择文本。文本范围让您可以选择性的将字符、单词和句子从 文档中挑选出来。TextRange对象是在HTML文档将要显示的文本流上建立开始和结束位置的抽象对象。 下面是TextRange的常用属性与方法： 属性 boundingHeight 获取绑定TextRange对象的矩形的高度 boundingLeft 获取绑定TextRange 对象的矩形左边缘和包含TextRange对象的左侧之间的距离 offsetLeft 获取对象相对于版面或由offsetParent属性指定的父坐标的计算左侧位置 offsetTop 获取对象相对于版面或由offsetParent属性指定的父坐标的计算顶端位置 htmlText 获取绑定TextRange对象的矩形的宽度 text 设置或获取范围内包含的文本 方法 moveStart 更改范围的开始位置 moveEnd 更改范围的结束位置 collapse 将插入点移动到当前范围的开始或结尾 move 折叠给定文本范围并将空范围移动给定单元数 execCommand 在当前文档、当前选中区或给定范围上执行命令 select 将当前选择区置为当前对象 findText 在文本中搜索文本并将范围的开始和结束点设置为包围搜索字符串。 使用TextRange对象通常包括三个基本的步骤: 1.创建文本范围 2.设置开始点和结束点 3.对范围进行操作 -------------------------------------------------------------------------------- 示例1:
+
+		<script language="javascript">
+			function moveCursor() {
+				var temp = this.txtNum.value;
+				if(isNaN(temp)) {
+					alert("请输入一个数字");
+					return;
+				}
+				var rng = this.txtTest.createTextRange();
+				rng.move("character", temp);
+				rng.select();　　　
+			}
+		</script>
+
+		<input type="text" name="txtTest" value="明·罗贯中《三国演义》第二十一回 操曰:“夫英雄者，胸怀大志，腹有良谋，有包藏宇宙之机，吞吐天地之志者也。" size="100"><br> 移动光标到第
+
+		<input type="text" name="txtNum" size="5">个位置
+
+		<input type="button" name="btnMove" value="移动" onclick="moveCursor()"> 上面的例子实现了一个简单的光标定位,涉及到了textRange的几个方法 1.createTextRange() 创建一个TextRange对象,BODY、TEXT、TextArea、BUTTON等元素都支持这个方法。该方法返回一个TextRange对象。 2.move("Unit"[,count]) move()方法执行两个操作。首先，方法在前一个结束点的位置重叠当前文档，将这里作为一个插入点；下一步，它将插入点向前或向后移动任意个字符、单词或句子单位。 方 法的第一个参数是字符串，它指定的单位有character(字符)、word(词)、sentence(段落)、textedit。textedit 值将插入点移动到整个文本范围的结束处(不需要参数)。如果指定为前三种单位，忽略参数时默认值为1,也可以指定一个整数值来指示单元数，正数代表向前移 动，负数代表向后移动。 注意在move()方法执行后范围仍是重叠的。 3.select() select()方法选择当前文本范围内的文本，这里的显示光标也必须利用它来实现，因为所谓的"光标"可以理解为边界重合的范围 -------------------------------------------------------------------------------- 示例2:
+
+		<script language="javascript">
+			function selectText(sp, ep) {
+				if(isNaN(sp) || isNaN(ep)) {
+					alert("请输入数字!");
+					return;
+				}
+				//弱语言自动转换
+				sp = sp * 1;
+				ep = ep * 1;　
+				if(sp >= ep) {
+					alert("开始位置必须比结束位置小");
+					return;
+				}
+				if(sp > txtBox.value.length || ep > txtBox.value.length) {
+					alert("当前字符数最大为" + txtBox.value.length + ",请重新输入");
+					return;
+				}　
+				var rng = this.txtBox.createTextRange();
+
+				//将开始点和结束点在容器起始位置重合
+				rng.moveStart("character", -txtBox.value.length);
+				rng.moveEnd("character", -txtBox.value.length);
+				rng.collapse(true);
+
+				//按参数值移动
+				rng.moveStart("character", sp);
+				rng.moveEnd("character", ep);
+
+				rng.select();　　　　　　　
+			}
+		</script>
+
+		<textarea name="txtBox" rows="7" cols="50" id="txtBox">
+千里之外
+歌手：周杰伦/费玉清 专辑：依然范特西
+
+屋檐如悬崖风铃如沧海我等燕归来
+时间被安排演一场意外你悄然走开
+故事在城外浓雾散不开看不清对白
+你听不出来风声不存在是我在感慨
+
+梦醒来是谁在窗台把结局打开
+那薄如蝉翼的未来经不起谁来拆
+我送你离开千里之外你无声黑白
+沉默年代或许不该太遥远的相爱
+我送你离开天涯之外你是否还在
+琴声何来生死难猜用一生去等待
+
+闻泪声入林寻梨花白只得一行青苔
+天在山之外雨落花台我两鬓斑白
+闻泪声入林寻梨花白只得一行青苔
+天在山之外雨落花台我等你来
+</textarea><br> 指定选择范围:
+
+		<input type="text" size="5" id="txtStart"> -- <input type="text" size="5" id="txtEnd">
+
+		<input type="button" value="选择" onclick="selectText(txtStart.value,txtEnd.value)"> 上面的例子演示了利用moveStart()和moveEne()方法选择范围，出现的几个方法的说明如下： 4.moveStart("Unit"[,count])与moveEnd("Unit"[,count]) moveStart()与moveEnd()方法类似于move()方法,默认情况下开始点为容器第一个字符、结束点为最后一个字符 我们可以修改上面的selectText()函数来证明: function selectText() { var rng = txtBox.createTextRange(); rng.moveStart("character",1); rng.moveEnd("character",-1); rng.select(); } 将开始点向前移动一个字符、结束点向后移动一个字符，运行后可以看到选择的范围是除第1个字符和最后1个字符的整个文本范围。 5.collapse([Boolean]) 可以用collapse()方法把文本范围从当前尺寸重叠成字符间的单个插入点。collapse()方法的可选参数是Boolean值,它指出范围是在当前范围的开始点重合，还是结束点重合。默认值为true，在开始点重合: -------------------------------------------------------------------------------- 示例2:
+
+		<textarea name="txtBox" rows="7" cols="50" id="txtBox">
+菊花台 (满城尽带黄金甲主题曲)
+歌手：周杰伦 专辑：依然范特西
+
+你的泪光 柔弱中带伤
+惨白的月弯弯 勾住过往
+夜太漫长 凝结成了霜
+是谁在阁楼上冰冷的绝望
+雨轻轻淌 朱红色的窗
+我一生在纸上 被风吹乱
+梦在远方 化成一缕霞
+随风飘散 你的模样
+
+菊花惨淡地伤 你的笑容已泛黄
+花落人断肠 我心事静静淌
+北风乱夜未央 你的影子剪不断
+徒留我孤单在湖面生霜
+</textarea><br>
+
+		<input type="text" value="输入要查询的内容" id="txtFind">
+
+		<input type="button" value="查找下一个" onclick="findText(txtFind.value)">
+
+		<script language="javascript">
+			var rng = txtBox.createTextRange();
+
+			function findText(str) {
+				if(str == "")
+					return;
+				//定义一个变量，作为moveStart()函数的偏移量，即开始点跳过选择文本
+				var num = 0;
+				if(document.selection)　　
+					num = document.selection.createRange().text.length;
+				//每次调用函数，结束点都为末尾，而开始点是跳过选择文本后的新开始点
+				rng.moveStart("character", num);
+				rng.moveEnd("character", txtBox.value.length);
+				//搜索到后选择文本　　
+				if(rng.findText(str))
+					rng.select();
+				//搜索到最后的范围还是找不到，则提示搜索完毕，并重新恢复rng最初的范围(否则无法执行新搜索)　　
+				if(rng.text != str) {　　
+					alert("搜索完毕");
+					rng = txtBox.createTextRange();
+				}
+			}
+		</script>
+
+		5.findText("searchString"[,searchScope,flags]) TextRange 对象最有用的方法之一是findText()方法，其默认行为是从开始点到结束点浏览文本范围，搜索一个不区分大小写的字符串匹配。如果在范围中发现一个 实例，范围的开始点和结束点就放到这个文本中，方法返回true；否则返回false,开始点和结束点都不动。方法仅搜索显示文本，而任何标记或属性都不 会被搜索。 可选参数searchScope是一个整数值，它指示从开始点的字符数，值越大，包含在搜索范围的文本越多；负值将迫使搜索操作从当前开始点向后搜索。 可 选参数flag用来设置搜索是否区分大小写，或者是否仅匹配整个单词。参数是整数值，它用按位组合的数学方法计算单个值，这些值能容纳一个或多个设置。匹 配整个单词的值为2；匹配大小写的值为4；如果只想匹配一项，则只提供希望的值就够了，但对于两种行为，要用位操作XOR操作符(^操作符)使值为6。 findText() 方法最常用的应用包括范围中的查找和替换操作，以及格式化一个字符串的实例，因为搜索通常以范围的当前开始点开始，所以再次查询要将开始点移到范围中匹配 文本的末尾(如示例3)，移动后才能使findText()继续浏览剩下的文本范围，来查找另一个匹配。可以使用 collapse(false)方法迫使开始点移动第一个匹配的范围的结束点。所以示例3的findText()函数也可以修改为:
+
+		<script language="javascript">
+			var rng = txtBox.createTextRange();
+
+			function findText(str) {
+				if(str == "")
+					return;
+
+				if(rng.findText(str)) {
+					rng.select();
+					rng.collapse(false);
+				}
+				//搜索到最后的范围还是找不到，则提示搜索完毕，并重新恢复rng最初的范围(否则无法执行新搜索)　　
+				else {　　
+					alert("搜索完毕");
+					rng = txtBox.createTextRange();
+				}
+			}
+		</script>
+
+		6.parentElement() parentElement()方法返回包含文本范围容器的引用 示例4:
+
+		<script>
+			function getParElem() {
+				var rng = document.selection.createRange();
+				var container = rng.parentElement();
+				alert(container.tagName);
+			}
+		</script>
+
+		这是只属于Body的文本
+		<div>这是包含在div里的文本</div>
+		<p>这是包含在p里面的文本</p>
+		</pre>
+	</body>
+
+</html>

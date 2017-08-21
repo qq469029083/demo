@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$("#b1").click(function(){
+					$("#d1").hide(1000,function(){
+						alert("你执行了回调函数");
+					})
+				})
+			})
+		</script>
+	</head>
+	<body>
+		<button id="b1">隐藏功能</button>
+		<div id="d1">
+			ohoh什么都没有
+			<br />
+			四面楚歌
+			<br />
+			枫
+		</div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("a").attr("href","#");
+				$("a").click(function(){
+					event.preventDefault();
+					$("#log").append("链接已经停用<br>")
+				})
+			});
+		</script>	
+	</head>
+	<body>
+		<a href="http://www.baidu.com">baidu</a>
+		<a href="http://www.qq.com">qq</a>
+		<div id="log"></div>
+	</body>
+</html>
+

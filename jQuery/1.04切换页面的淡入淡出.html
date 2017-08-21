@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#b1").click(function(){
+					$("#d1").fadeToggle(3000); //消失（如果存在）
+					$("#d1").fadeToggle(3000);	//出现
+					$("#d1").fadeTo(5000,0.6);	//透明0.6
+				})
+			});
+		</script>	
+	</head>
+	<body>
+		<div id="d1">
+			welcome to mitis
+			<br />
+			亲爱的
+			<br />
+			你在我床上醒来
+			<br />
+			opps baby i love you
+		</div>
+		<button id="b1">btn</button>
+	</body>
+</html>
+
